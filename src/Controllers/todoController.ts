@@ -1,6 +1,5 @@
-import { Router, Request, Response } from "express";
-import bodyParser from "body-parser";
-import Todo, { TodoDocument } from "../Models/todoModel";
+import { Request, Response } from "express";
+import Todo from "../Models/todoModel";
 import User, { UserDocument } from "../Models/userModel";
 declare global {
   namespace Express {
@@ -23,7 +22,7 @@ export const create = async (req: Request, res: Response) => {
       });
     }
     const newTodo = new Todo({
-      email: req.user.email,
+      addedBy: req.user.email,
       title: req.body.title,
       description: req.body.description,
       completed: req.body.completed,

@@ -1,10 +1,9 @@
 import { Request, Response, NextFunction } from "express";
-import jwt, { TokenExpiredError, JsonWebTokenError } from "jsonwebtoken";
+import jwt from "jsonwebtoken";
 import User, { UserDocument } from "../Models/userModel";
 
 import dotenv from "dotenv";
 dotenv.config();
-
 declare global {
   namespace Express {
     interface Request {
@@ -40,16 +39,10 @@ const authMiddleware = async (
       return res.status(401).json({ message: "Please create an account" });
     }
   } catch (err: any) {
-    if (err instanceof TokenExpiredError) {
-      return res
-        .status(401)
-        .json({ message: `JWT Expired Error: ${err.message}` });
-    }
-
-    if (err instanceof JsonWebTokenError) {
-      return res
-        .status(401)
-        .json({ message: `JWT Token Error: ${err.message}` });
+    if (err.name === "TokenExpiredError") {
+      return res.status(401).json({ message: "Token expired" });
+    } else if (err.name === "JsonWebTokenError") {
+      return res.status(401).json({ message: "Invalid token" });
     } else {
       return res.status(401).json({ message: "Unauthorized, please Login" });
     }
