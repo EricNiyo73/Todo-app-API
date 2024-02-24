@@ -1,6 +1,6 @@
 import { expect } from "chai";
 import chaiHttp from "chai-http";
-import app from "../index";
+import app from "../index.js";
 chai.use(chaiHttp);
 
 describe("Todo Controller", () => {

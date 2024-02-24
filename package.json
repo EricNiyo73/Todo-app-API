@@ -39,9 +39,10 @@
     "typescript": "^5.3.3"
   },
   "scripts": {
-    "test": "nyc mocha -p tsconfig.json --require ts-node/register --extension ts ./src/test/*.spec.ts",
+    "test": "nyc mocha --require ts-node/register --extension ts ./src/test/**.spec.ts",
     "dev": "ts-node-dev --pretty --respawn ./src/index.ts",
-    "start": "nodemon ./src/index.ts"
+    "start": "nodemon ./src/index.ts",
+    "build": "tsc"
   },
   "author": "",
   "license": "ISC",
