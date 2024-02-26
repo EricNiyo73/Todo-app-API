@@ -122,10 +122,10 @@ export const findOneTodo = async (req: Request, res: Response) => {
 //GET ALL TODOS
 export const findAllTodo = async (req: Request, res: Response) => {
   try {
-    const posts = await Todo.find();
+    const todos = await Todo.find();
 
     return res.status(200).json({
-      data: posts,
+      data: todos,
     });
   } catch (err) {
     return res.status(500).json(err);
