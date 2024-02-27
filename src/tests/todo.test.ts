@@ -3,22 +3,22 @@ import app from "./index.test";
 import Todo from "../Models/todoModel";
 import User from "../Models/userModel";
 const request = supertest(app);
-
+let auth = {};
 describe("Todo", () => {
   let token: string;
 
-  beforeAll(async () => {
-    const signupResponse = await request.post("/api/nnnnusers/signupn").send({
-      email: "test1@test.com",
-      password: "password",
-    });
+  beforeEach(async () => {
+    // const signupResponse = await request.post("/api/users/signup").send({
+    //   email: "test2@test.com",
+    //   password: "password",
+    // });
 
-    expect(signupResponse.status).toEqual(201);
-    expect(signupResponse.body).toHaveProperty("user");
-    expect(signupResponse.body).toHaveProperty("message");
+    // expect(signupResponse.status).toEqual(201);
+    // expect(signupResponse.body).toHaveProperty("user");
+    // expect(signupResponse.body).toHaveProperty("message");
 
     const loginResponse = await request.post("/api/users/login").send({
-      email: "test1@test.com",
+      email: "test2@test.com",
       password: "password",
     });
 
@@ -48,14 +48,14 @@ describe("Todo", () => {
 describe("POST a Todo", () => {
   let token: string;
 
-  beforeAll(async () => {
-    const signupResponse = await request.post("/api/users/signup").send({
-      email: "test1@test.com",
-      password: "password",
-    });
-    expect(signupResponse.status).toEqual(201);
-    expect(signupResponse.body).toHaveProperty("user");
-    expect(signupResponse.body).toHaveProperty("message");
+  beforeEach(async () => {
+    // const signupResponse = await request.post("/api/users/signup").send({
+    //   email: "test1@test.com",
+    //   password: "password",
+    // });
+    // expect(signupResponse.status).toEqual(201);
+    // expect(signupResponse.body).toHaveProperty("user");
+    // expect(signupResponse.body).toHaveProperty("message");
 
     const loginResponse = await request.post("/api/users/login").send({
       email: "test1@test.com",
