@@ -1,16 +1,13 @@
-import Router from "express";
-const router = Router();
+import { Router } from "express";
+import TodoController from "../Controllers/todoController";
 import authentication from "../Middlewares/mustHaveAccount";
-import {
-  create,
-  findAllTodo,
-  findOneTodo,
-  updateT,
-  deleteT,
-} from "../Controllers/todoController";
-router.post("/create", authentication, create);
-router.get("/", findAllTodo);
-router.get("/:id", findOneTodo);
-router.put("/:id", authentication, updateT);
-router.delete("/:id", authentication, deleteT);
+
+const router = Router();
+
+router.post("/create", TodoController.createTodo);
+router.get("/", TodoController.findAllTodo);
+router.get("/:id", TodoController.findOneTodo);
+router.put("/:id", authentication, TodoController.updateTodo);
+router.delete("/:id", authentication, TodoController.deleteT);
+
 export default router;
