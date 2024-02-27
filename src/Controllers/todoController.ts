@@ -28,10 +28,10 @@ export default class TodoController {
         completed: req.body.completed,
       });
 
-      const saveTodo = await newTodo.save();
+      const data = await newTodo.save();
 
       return res.status(201).json({
-        saveTodo,
+        data,
         message: "your Todo was successfully added",
       });
     } catch (error) {
@@ -54,7 +54,7 @@ export default class TodoController {
         });
       }
       if (todo?.addedBy === req.user.email) {
-        const updatedTodo = await Todo.findByIdAndUpdate(
+        const data = await Todo.findByIdAndUpdate(
           { _id: TodoId },
           {
             title: req.body.title,
@@ -64,7 +64,7 @@ export default class TodoController {
           { new: true }
         );
         return res.status(200).json({
-          updatedTodo,
+          data,
           message: "your todo was successfully updated",
         });
       } else {
@@ -112,8 +112,8 @@ export default class TodoController {
   //GET TODO
   static async findOneTodo(req: Request, res: Response) {
     try {
-      const todo = await Todo.findById(req.params.id);
-      return res.status(200).json(todo);
+      const data = await Todo.findById(req.params.id);
+      return res.status(200).json(data);
     } catch (err) {
       return res.status(500).json(err);
     }
@@ -122,9 +122,9 @@ export default class TodoController {
   //GET ALL TODOS
   static async findAllTodo(req: Request, res: Response) {
     try {
-      const todos = await Todo.find();
+      const data = await Todo.find();
       return res.status(200).json({
-        data: todos,
+        data: data,
       });
     } catch (err) {
       return res.status(500).json(err);
