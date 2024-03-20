@@ -9,5 +9,6 @@ router.get("/", TodoController.findAllTodo);
 router.get("/:id", TodoController.findOneTodo);
 router.put("/:id", authentication, TodoController.updateTodo);
 router.delete("/:id", authentication, TodoController.deleteT);
+router.delete("/many", TodoController.deleteMany);
 
 export default router;

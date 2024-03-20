@@ -27,7 +27,7 @@ export default class TodoController {
     const data = await newTodo.save();
 
     return res.status(201).json({
-      data,
+      data: data,
       message: "your Todo was successfully added",
     });
   }
@@ -52,7 +52,7 @@ export default class TodoController {
       { new: true }
     );
     return res.status(200).json({
-      data,
+      data: data,
       message: "your todo was successfully updated",
     });
   }
@@ -72,11 +72,15 @@ export default class TodoController {
       message: "Todo deleted ............",
     });
   }
-
+  //delete many
+  static async deleteMany(req: Request, res: Response) {
+    const data = await Todo.deleteMany();
+    return res.status(200).json(data);
+  }
   //GET TODO
   static async findOneTodo(req: Request, res: Response) {
     const data = await Todo.findById(req.params.id);
-    return res.status(200).json(data);
+    return res.status(200).json({ data: data });
   }
 
   //GET ALL TODOS
