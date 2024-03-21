@@ -4,10 +4,10 @@ import authentication from "../Middlewares/mustHaveAccount";
 
 const router = Router();
 
-router.post("/create", TodoController.createTodo);
+router.post("/create", authentication, TodoController.createTodo);
 router.get("/", TodoController.findAllTodo);
 router.get("/:id", TodoController.findOneTodo);
-router.put("/:id", TodoController.updateTodo);
-router.delete("/:id", TodoController.deleteT);
+router.put("/:id", authentication, TodoController.updateTodo);
+router.delete("/:id", authentication, TodoController.deleteT);
 
 export default router;

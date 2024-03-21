@@ -19,6 +19,7 @@ export default class TodoController {
       });
     }
     const newTodo = new Todo({
+      postedBy: req.user?._id,
       title: req.body.title,
       desc: req.body.desc,
       completed: req.body.completed,

@@ -30,10 +30,14 @@ const authMiddleware = async (
       return res.status(401).json({ message: "Invalid token" });
     }
 
-    // const user: UserDocument | null = await User.findById(decodedToken.id);
+    const user: UserDocument | null = await User.findById(decodedToken.id);
 
-    req.user = decodedToken;
-    next();
+    if (user) {
+      req.user = user;
+      next();
+    } else {
+      return res.status(401).json({ message: "Please create an account" });
+    }
   } catch (err: any) {
     if (err.name === "TokenExpiredError") {
       return res.status(401).json({ message: "Token expired" });

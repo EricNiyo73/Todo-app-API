@@ -1,7 +1,7 @@
 import mongoose, { Document, Schema } from "mongoose";
 
 export interface Todo {
-  addedBy: string;
+  postedBy: object;
   title: string;
   desc: string;
   completed: boolean;
@@ -10,8 +10,9 @@ export interface Todo {
 export interface TodoDocument extends Todo, Document {}
 
 const todoSchema = new Schema<TodoDocument>({
-  addedBy: {
-    type: String,
+  postedBy: {
+    type: Schema.Types.ObjectId,
+    ref: "User",
   },
   title: {
     type: String,
