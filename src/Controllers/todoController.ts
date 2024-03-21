@@ -46,13 +46,13 @@ export default class TodoController {
       { _id: TodoId },
       {
         title: req.body.title,
-        desc: req.body.descr,
+        desc: req.body.desc,
         completed: req.body.completed,
       },
       { new: true }
     );
     return res.status(200).json({
-      data: data,
+      data: { data },
       message: "your todo was successfully updated",
     });
   }
@@ -87,7 +87,7 @@ export default class TodoController {
   static async findAllTodo(req: Request, res: Response) {
     const data = await Todo.find();
     return res.status(200).json({
-      data: data,
+      data: { data },
     });
   }
 }
