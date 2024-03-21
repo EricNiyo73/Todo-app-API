@@ -20,7 +20,7 @@ export const login = async (req: Request, res: Response) => {
   );
 
   if (!validated) {
-    return res.status(404).json({ message: "Wrong credentials" });
+    return res.status(400).json({ message: "Wrong credentials" });
   } else {
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET || "", {
       expiresIn: "1d",
@@ -28,6 +28,7 @@ export const login = async (req: Request, res: Response) => {
     return res.status(200).json({
       message: "Logged in successfully",
       token: token,
+      username: user.username,
     });
   }
   // } catch (error: any) {
