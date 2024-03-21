@@ -9,6 +9,5 @@ router.get("/", TodoController.findAllTodo);
 router.get("/:id", TodoController.findOneTodo);
 router.put("/:id", TodoController.updateTodo);
 router.delete("/:id", TodoController.deleteT);
-// router.delete("/many", TodoController.deleteMany);
 
 export default router;
