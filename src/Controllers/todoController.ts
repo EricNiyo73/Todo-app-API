@@ -20,7 +20,7 @@ export default class TodoController {
     }
     const newTodo = new Todo({
       title: req.body.title,
-      description: req.body.description,
+      desc: req.body.desc,
       completed: req.body.completed,
     });
 
@@ -46,7 +46,7 @@ export default class TodoController {
       { _id: TodoId },
       {
         title: req.body.title,
-        description: req.body.description,
+        desc: req.body.descr,
         completed: req.body.completed,
       },
       { new: true }

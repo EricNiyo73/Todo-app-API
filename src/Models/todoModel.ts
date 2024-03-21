@@ -3,7 +3,7 @@ import mongoose, { Document, Schema } from "mongoose";
 export interface Todo {
   addedBy: string;
   title: string;
-  description: string;
+  desc: string;
   completed: boolean;
 }
 
@@ -17,7 +17,7 @@ const todoSchema = new Schema<TodoDocument>({
     type: String,
     required: true,
   },
-  description: {
+  desc: {
     type: String,
     required: true,
   },
