@@ -80,7 +80,7 @@ export default class TodoController {
   //GET TODO
   static async findOneTodo(req: Request, res: Response) {
     const data = await Todo.findById(req.params.id);
-    return res.status(200).json({ data: data });
+    return res.status(200).json({ data: { data } });
   }
 
   //GET ALL TODOS
