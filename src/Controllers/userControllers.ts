@@ -51,6 +51,7 @@ export const signup = async (req: Request, res: Response) => {
     });
   }
   const newUser = new User({
+    username: req.body.username,
     email: req.body.email,
     password: hashedpassword,
   });
